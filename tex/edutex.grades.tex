@@ -1,0 +1,40 @@
+\catcode`@=11
+\newcount\c@edu@Grades \c@edu@Grades=0
+
+% Setup Grade
+\def\setGrade#1#2{
+\global\advance\c@edu@Grades by 1
+  \expandafter\xdef\csname edu@Grade@Id\the\c@edu@Grades\endcsname{#1}
+  \expandafter\xdef\csname edu@Grade@PP\the\c@edu@Grades\endcsname{#2}}
+
+\def\pgrade{
+\count0=0
+\loop
+\ifnum\count0 < \c@edu@Grades \advance\count0 by 1
+  \csname edu@Grade@Id\the\count0\endcsname\space
+  \csname edu@Grade@PP\the\count0\endcsname\newline
+\repeat
+}
+
+% Calclulate Grades
+\def\getGradeList{
+  \ifnum\c@edu@Grades>0 
+  %\eduTex@PointsName: \the\c@eduTex@points
+  \begingroup
+  \vskip9pt \count0=0
+  \setbox0=\hbox{\vbox{\hbox{\@gradeName}\hbox{p}\hbox{\@pointsName}\hbox{\vbox to 18pt{}}}
+    \loop \ifnum\count0 < \c@edu@Grades \advance\count0 by 1
+      \expandafter\dimen0=\the\c@points pt
+      \expandafter\dimen0=\csname edu@Grade@PP\the\count0\endcsname\dimen0
+      \vrule\kern9pt\vbox{\hbox to 30pt{\csname edu@Grade@Id\the\count0\endcsname}\hbox{\csname edu@Grade@PP\the\count0\endcsname}\hbox{\@strip@pt\dimen0}\hbox {\vbox to 18pt{}}} 
+      \repeat
+      \vrule     
+     }
+  \dimen0=0.6pt
+  {\setbox2=\hbox{}\wd2=\@strip@pt\dimen0\wd0 \ht2=\@strip@pt\dimen0\ht0 \dp2=\@strip@pt\dimen0\dp0\box2}
+  \pdfsave\pdfsetmatrix{0.6 0 0 0.6}\rlap{\smash{\copy0}}\pdfrestore
+  \endgroup
+  \fi    
+}
+
+

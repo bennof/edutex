@@ -1,0 +1,16 @@
+# edutex git ignore
+
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.out
+*.toc
+*.dvi
+*.fmt
+*.swp
+
+priv/*
+examples/*.pdf
+tex/*.pdf

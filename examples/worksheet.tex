@@ -1,0 +1,31 @@
+
+\catcode`@=11
+\def\@icon{\kern-1cm\includeImage[3cm]{sgslogo.png}}
+\def\@url{Gesamtschule Stolberg}
+\def\@subject{Mathematik}
+\def\@date{12. August 2013}
+\catcode`@=12
+
+\newSeries{Learning \eduTeX}{L}
+\newWorksheet{Learning educational \TeX\space for schools}{
+\exercise{Dies ist ein Test}
+{Was ist ein Baum}
+\exercise{Dies ist ein Test}{
+\subexercise*{Was ist ein Baum im Niergendwo?}{Solve}}
+\exercise{Dies ist ein Test}{
+\subexercise{Was ist ein Baum im Niergendwo?}{Solve}}
+\exercise{Dies ist ein Test}{
+\subexercise{Was ist ein Baum im Niergendwo? With more and more and more  and more and more and more and more text.}{Solve}
+\subexercise{Was ist ein Baum im Niergendwo?}{Solve}}
+\exercise{Dies ist ein Test}{
+\subexercise[0.45\hsize]{Was ist ein Baum im Niergendwo?}{Solve}
+\subexercise[0.45\hsize]{Was ist ein Baum im Niergendwo?}{Solve}
+}
+$$\lim\limits_{x\to\infty} \int_0^n{{x}\over{t-1}} dt$$
+\rm dies ist ein test
+\bf soso
+\rm
+\includeImage[200pt]{sgslogo.png}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+}
+\bye

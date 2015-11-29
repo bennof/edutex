@@ -1,0 +1,73 @@
+%    EduTeX is a replacment and/or TeX lib for education
+%    Copyright (C) 2010-2015  Benjamin Falkner
+%
+%    This program is free software: you can redistribute it and/or modify
+%    it under the terms of the GNU General Public License as published by
+%    the Free Software Foundation, either version 3 of the License, or
+%    (at your option) any later version.
+%
+%    This program is distributed in the hope that it will be useful,
+%    but WITHOUT ANY WARRANTY; without even the implied warranty of
+%    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%    GNU General Public License for more details.
+%
+%    You should have received a copy of the GNU General Public License
+%    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+%
+
+
+% plain TeX default file -- is replaced 
+
+\catcode`\{=1 % left brace is begin-group character
+\catcode`\}=2 % right brace is end-group character
+\catcode`\$=3 % dollar sign is math shift
+\catcode`\&=4 % ampersand is alignment tab
+\catcode`\#=6 % hash mark is macro parameter character
+\catcode`\^=7 \catcode`\^^K=7 % circumflex and uparrow are for superscripts
+\catcode`\_=8 \catcode`\^^A=8 % underline and downarrow are for subscripts
+\catcode`\^^I=10 % ascii tab is a blank space
+\chardef\active=13 \catcode`\~=\active % tilde is active
+\catcode`\^^L=\active \outer\def^^L{\par} % ascii form-feed is "\outer\par"
+
+
+% Here is a list of the characters that have been specially catcoded:
+\def\dospecials{\do\ \do\\\do\{\do\}\do\$\do\&%
+  \do\#\do\^\do\^^K\do\_\do\^^A\do\%\do\~}
+
+\catcode`@=11
+
+\pdfoutput=1
+
+
+\message{    EduTeX  Copyright (C) 2010-2015  Benno Falkner
+    This program comes with ABSOLUTELY NO WARRANTY
+    This is free software, and you are welcome to redistribute it
+    under certain conditions}
+
+
+
+\message{EduTex loading core element: codes,}
+\input edutex.codes.tex
+\message{registers,}
+\input edutex.registers.tex
+\message{parameters,}
+\input edutex.parameter.tex
+\message{fonts,}
+\input edutex.fonts.tex
+\message{macros,} 
+\input edutex.macros.tex
+\message{variables} %added
+\input edutex.var.tex
+\message{math definitions,}
+\input edutex.math.tex
+\message{output routines,} 
+\input edutex.output.tex
+\message{hyphenation,}
+\input edutex.hyphenation.tex
+\message{grades,} %added
+\input edutex.grades.tex
+\message{sheets,} %added
+\input edutex.sheet.tex
+
+\catcode`@=12
+\endinput

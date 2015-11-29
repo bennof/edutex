@@ -1,0 +1,18 @@
+phvb8r NimbusSanL-Bold " TeXBase1Encoding ReEncodeFont " <8r.enc <uhvb8a.pfb
+phvb8rn NimbusSanL-BoldCond " TeXBase1Encoding ReEncodeFont " <8r.enc <uhvb8ac.pfb
+phvbo8r NimbusSanL-BoldItal " TeXBase1Encoding ReEncodeFont " <8r.enc <uhvbo8a.pfb
+phvbo8rn NimbusSanL-BoldCondItal " TeXBase1Encoding ReEncodeFont " <8r.enc <uhvbo8ac.pfb
+phvr8r NimbusSanL-Regu " TeXBase1Encoding ReEncodeFont " <8r.enc <uhvr8a.pfb
+phvr8rn NimbusSanL-ReguCond " TeXBase1Encoding ReEncodeFont " <8r.enc <uhvr8ac.pfb
+phvro8r NimbusSanL-ReguItal " TeXBase1Encoding ReEncodeFont " <8r.enc <uhvro8a.pfb
+phvro8rn NimbusSanL-ReguCondItal " TeXBase1Encoding ReEncodeFont " <8r.enc <uhvro8ac.pfb
+
+phvbi8r NimbusSanL-Bold " .167 SlantFont TeXBase1Encoding ReEncodeFont " <8r.enc <uhvb8a.pfb
+phvbi8rn NimbusSanL-BoldCond " .167 SlantFont TeXBase1Encoding ReEncodeFont " <8r.enc <uhvb8ac.pfb
+phvbii8r NimbusSanL-BoldItal " .82 ExtendFont TeXBase1Encoding ReEncodeFont " <8r.enc <uhvbo8a.pfb
+phvbii8rn NimbusSanL-BoldCondItal " .82 ExtendFont TeXBase1Encoding ReEncodeFont " <8r.enc <uhvbo8ac.pfb
+
+phvri8r NimbusSanL-Regu " .167 SlantFont TeXBase1Encoding ReEncodeFont " <8r.enc <uhvr8a.pfb
+phvri8rn NimbusSanL-ReguCond " .167 SlantFont TeXBase1Encoding ReEncodeFont " <8r.enc <uhvr8ac.pfb
+phvrii8r NimbusSanL-ReguItal " .82 ExtendFont TeXBase1Encoding ReEncodeFont " <8r.enc <uhvro8a.pfb
+phvrii8rn NimbusSanL-ReguCondItal " .82 ExtendFont TeXBase1Encoding ReEncodeFont " <8r.enc <uhvro8ac.pfb

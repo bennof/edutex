@@ -1,0 +1,141 @@
+%    EduTeX is a replacment and/or TeX lib for education
+%    Copyright (C) 2010-2015  Benjamin Falkner
+%
+%    This program is free software: you can redistribute it and/or modify
+%    it under the terms of the GNU General Public License as published by
+%    the Free Software Foundation, either version 3 of the License, or
+%    (at your option) any later version.
+%
+%    This program is distributed in the hope that it will be useful,
+%    but WITHOUT ANY WARRANTY; without even the implied warranty of
+%    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%    GNU General Public License for more details.
+%
+%    You should have received a copy of the GNU General Public License
+%    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+% based on plain TeX
+
+% Page size A4
+\newdimen\pageheight     \pageheight=297mm
+\newdimen\pagewidth      \pagewidth=210mm
+\newdimen\headlineheight \headlineheight=20mm
+\newdimen\footlineheight \footlineheight=25mm
+\pdfpageheight=\pageheight
+\pdfpagewidth=\pagewidth
+
+\pretolerance=100
+\tolerance=200 % INITEX sets this to 10000
+\hbadness=1000
+\vbadness=1000
+\linepenalty=10
+\hyphenpenalty=50
+\exhyphenpenalty=50
+\binoppenalty=700
+\relpenalty=500
+\clubpenalty=150
+\widowpenalty=150
+\displaywidowpenalty=50
+\brokenpenalty=100
+\predisplaypenalty=10000
+% \postdisplaypenalty=0
+% \interlinepenalty=0
+% \floatingpenalty=0, set during \insert
+% \outputpenalty=0, set before TeX enters \output
+\doublehyphendemerits=10000
+\finalhyphendemerits=5000
+\adjdemerits=10000
+% \looseness=0, cleared by TeX after each paragraph
+% \pausing=0
+% \holdinginserts=0
+% \tracingonline=0
+% \tracingmacros=0
+% \tracingstats=0
+% \tracingparagraphs=0
+% \tracingpages=0
+% \tracingoutput=0
+\tracinglostchars=1
+% \tracingcommands=0
+% \tracingrestores=0
+% \language=0
+\uchyph=1
+% \lefthyphenmin=2 \righthyphenmin=3 set below
+% \globaldefs=0
+% \maxdeadcycles=25 % INITEX does this
+% \hangafter=1 % INITEX does this, also TeX after each paragraph
+% \fam=0
+% \mag=1000 % INITEX does this
+% \escapechar=`\\ % INITEX does this
+\defaulthyphenchar=`\-
+\defaultskewchar=-1
+% \endlinechar=`\^^M % INITEX does this
+\newlinechar=-1
+\delimiterfactor=901
+% \time=now % TeX does this at beginning of job
+% \day=now % TeX does this at beginning of job
+% \month=now % TeX does this at beginning of job
+% \year=now % TeX does this at beginning of job
+\showboxbreadth=5
+\showboxdepth=3
+\errorcontextlines=5
+
+\hfuzz=0.1pt
+\vfuzz=0.1pt
+\overfullrule=0pt
+\hsize=160mm
+\vsize=248mm
+\maxdepth=4pt
+\splitmaxdepth=\maxdimen
+\boxmaxdepth=\maxdimen
+% \lineskiplimit=0pt, changed by \normalbaselines
+\delimitershortfall=5pt
+\nulldelimiterspace=1.2pt
+\scriptspace=0.5pt
+% \mathsurround=0pt
+% \predisplaysize=0pt, set before TeX enters $$
+% \displaywidth=0pt, set before TeX enters $$
+% \displayindent=0pt, set before TeX enters $$
+\parindent=0pt
+% \hangindent=0pt, zeroed by TeX after each paragraph
+\hoffset=-0.4mm %+25.4mm = 25mm
+\voffset=4.6mm %+25.4mm = 30mm
+
+% \baselineskip=0pt, changed by \normalbaselines
+% \lineskip=0pt, changed by \normalbaselines
+\parskip=0pt plus 2pt
+\abovedisplayskip=12pt plus 3pt minus 9pt
+\abovedisplayshortskip=0pt plus 3pt
+\belowdisplayskip=12pt plus 3pt minus 9pt
+\belowdisplayshortskip=7pt plus 3pt minus 4pt
+% \leftskip=0pt
+% \rightskip=0pt
+\topskip=10pt
+\splittopskip=10pt
+% \tabskip=0pt
+% \spaceskip=0pt
+% \xspaceskip=0pt
+\parfillskip=0pt plus 1fil
+
+\thinmuskip=3mu
+\medmuskip=4mu plus 2mu minus 4mu
+\thickmuskip=5mu plus 5mu
+
+% We also define special registers that function like parameters:
+\newskip\smallskipamount \smallskipamount=3pt plus 1pt minus 1pt
+\newskip\medskipamount \medskipamount=6pt plus 2pt minus 2pt
+\newskip\bigskipamount \bigskipamount=12pt plus 4pt minus 4pt
+\newskip\normalbaselineskip \normalbaselineskip=12pt
+\newskip\normallineskip \normallineskip=1pt
+\newdimen\normallineskiplimit \normallineskiplimit=0pt
+\newdimen\jot \jot=3pt
+\newcount\interdisplaylinepenalty \interdisplaylinepenalty=100
+\newcount\interfootnotelinepenalty \interfootnotelinepenalty=100
+
+% Definitions for preloaded fonts
+
+\def\magstephalf{1095 }
+\def\magstep#1{\ifcase#1 \@m\or 1200\or 1440\or 1728\or 2074\or 2488\fi\relax}
+
+
+

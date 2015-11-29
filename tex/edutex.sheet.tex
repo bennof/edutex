@@ -1,0 +1,221 @@
+\catcode`@=11
+
+\newcount\c@points
+\newcount\c@spage
+\newcount\c@exercisepoints
+\newcount\c@exercise
+\newcount\c@subexercise
+\newcount\c@sheet
+\newcount\c@sheetloop
+\newcount\c@lesson 
+\newbox\b@exercise
+\newbox\b@cexercise
+\newif\if@solve\@solvefalse
+\newif\if@solveloop\@solveloopfalse
+\newif\if@points\@pointsfalse
+
+\def\strutA#1#2{\vrule height#1 depth#2 width0pt}
+\def\drawbox#1{\kern2pt\vbox{\hrule height 1pt\relax
+  \hbox{\hbox{\vrule width 1pt\relax\vbox{\hbox to #1{\vbox to #1{}}}\vrule width 1pt\relax}}
+  \hrule height 1pt\relax}\kern2pt}
+
+\def\pageid{\@initial\space- \folio}
+
+\def\ps@Worksheet{
+  \def\@oddhead{\rm\baselineskip=12pt\hskip-25mm\useColor{Header}{
+    \global\parindent=0pt
+    \vbox to \headlineheight{ 
+    \hbox to \pdfpagewidth{\kern-2mm
+    \vbox {\hbox to 23mm{\hfil\useColor{Highlight1}{\scaleBox[5]{\@initial}}}}
+    \vrule height 17mm depth 3mm width 0pt
+    \vbox{\hbox to \hsize {\bflarge\kern-1mm\useColor{Highlight1}{\@topic}\hss}
+    \hbox to \hsize {\kern0mm\@subtopic\hss}}
+    \vbox{\noindent\@icon}\hss
+    }\hrule}\hss}}
+  \def\@evenhead{\vbox to 0pt{\hbox to \hsize{\vbox to 10pt{\noindent\topic: \hfil}}\hrule}}
+  \def\@oddfoot{\rmsmall\baselineskip=10pt\hskip-25mm\useColor{Footer}{
+    \vbox to \footlineheight{\kern5mm\hrule\kern5pt
+    \hbox to \pdfpagewidth{\hfill\@url\kern1cm}
+    \hbox to \pdfpagewidth{\hfill\pageid\kern1cm}}\hss}}
+  \def\@evenfoot{\url\hfill}
+}
+
+
+\def\makeSheetTitle#1#2#3#4{
+  \parindent=0pt
+  \vbox{
+  \kern5mm
+  \hbox to \hsize{\kern-3mm\useColor{TitleColor}{
+  \vbox{\hbox to \hsize{\kern-1mm\bfscbig\useColor{Highlight1}
+  {#1}\hfill\kern3mm\rmsmall#3}%\@subject}
+        \hbox to \hsize{\rmlarge\useColor{Highlight2}
+  {#2}\hfill\rmsmall #4}}%\@date}}
+        \hss}}  
+  \kern1mm
+  \hrule width \hsize 
+  \kern5mm
+  }
+}
+
+\long\def\exercise#1#2{
+  \parindent=0pt \parskip=0pt \c@exercisepoints=0 \c@subexercise=0
+  \global\advance\c@exercise by 1
+  \global\c@exercisepoints=0
+  \if@solve\vbox{\setbox\b@exercise\hbox to \hsize{\vtop {#2\hss}\hss}\kern2mm
+    \hbox to \hsize{\bf\@exerciseName\space\the\c@exercise:\space#1\hfill\if@points(\the\c@exercisepoints\space \@pointsName)\fi}\box\strut\b@exercise\kern0mm}   
+  \else\vtop{\setbox\b@exercise\hbox to \hsize{\vtop {#2\hss}\hss}
+    \kern2mm\hbox  to \hsize{\bf\@exerciseName\space\the\c@exercise:\space#1\hfill\if@points(\if@solveloop \kern1cm /\space\fi\the\c@exercisepoints\space \@pointsName)\fi\strut}
+      \box\b@exercise\kern0mm}   
+  \fi
+  \par
+  \vskip3mm
+  \global\advance\c@points by \the\c@exercisepoints}
+
+
+% Subexercise
+\def\subexercise{\@ifstar \subexercisewstar \subexercisenstar}
+\def\subexercisenstar{\@optarg\subexercisenwarg\subexercisennarg}
+\long\def\subexercisennarg#1#2{\subexercisenwarg[1.0\hsize]{#1}{#2}}
+\long\def\subexercisewstar*#1#2{\parindent=0pt\leavevmode\hbox to \hsize{\vtop{\if@solveloop#2\par\else\setbox\b@cexercise\vbox{#2}#1\fi\strut}\hfil\par}}
+\long\def\subexercisenwarg[#1]#2#3{
+  \advance\c@subexercise by 1\parindent=0pt \parskip=0pt
+  \leavevmode\hbox to #1{ \hsize=#1
+    \advance\hsize by -10mm
+    \vtop{\hbox to 5mm{\bf\alphanumeral\c@subexercise)\hss}}
+    \vtop{\hbox to \hsize{\vtop{\if@solveloop#3\else\setbox\b@cexercise\vbox{#3}#2\fi\strut\par}\hfil}}\hss}}
+
+\def\ap{\space{\drawbox{2mm}}\global\advance\c@exercisepoints by 1\relax}
+
+\def\newSeries#1#2{
+\def\@topic{#1}
+\def\@initial{#2}
+\c@sheet=0
+}
+
+
+\long\def\checkTable#1{
+  \long\def\top##1##2{##1&##2&&&\cr}
+  \def\selbox##1{\vtop{\hbox to 5mm{\hfil##1\hfil}\hbox{\drawbox{3mm}}}}
+  \def\selboxes{  \hbox{\selbox{\bf++}\selbox{\bf+}\selbox{\bf{o}}\selbox{\bf-}}}
+  \everycr{\noalign{\hrule}}
+  \halign{
+    \vrule\strutA{10pt}{4pt}
+    \hfil\kern5pt\hbox to 0.25\hsize{\hsize=0.2\hsize\vtop{##\strut\par\selboxes\strutA{1pt}{1pt}}}\kern5pt\hfil\vrule&
+    \hfil\kern5pt\hbox to 0.23\hsize{\hsize=0.2\hsize\vtop{##}}\kern5pt\hfil\vrule&
+    \hfil\kern5pt\hbox to 0.1\hsize{\vbox{##}}\kern5pt\hfil\vrule&
+    \hfil\kern5pt\hbox to 0.2\hsize{\vbox{##}}\kern5pt\hfil\vrule&
+    \hfil\kern5pt\hbox to 0.1\hsize{\vbox{##}}\kern5pt\hfil\vrule\cr
+    \multispan3\vrule\strutA{12pt}{5pt}\hfil \bf Vor der Arbeit\hfil\vrule& \multispan2\hfil \bf Nach der Arbeit\hfil\vrule\cr
+    \omit\vrule\strutA{10pt}{4pt}\hfil\vrule& Aufgaben & Geübt? & Empfehlung & Geübt?\cr
+    #1}}
+
+\long\def\newCList#1#2{
+\newpage
+\def\@subtopic{#1}
+\pagestyle{Worksheet}
+  \makeSheetTitle{#1}{Rückmeldebogen}{ }{\rmsmall\@nameName:\kern50mm}
+#2
+  \vskip2cm
+  \hbox to \hsize{\hfil\hsize=55mm
+    \vtop{\hrule \sevenrm Unterschrift Erziehungsberechtigte/-r\strut}\kern5mm
+    \vtop{\hrule \sevenrm Unterschrift Erziehungsberechtigte/-r\strut}}
+\newpage
+}
+
+\long\def\newPlanning#1#2#3{
+\c@lesson=1
+\long\def\lesson##1##2{\vskip2mm
+\hbox{\hbox to 0.1\hsize{\bf\the\c@lesson\hfil}
+\hbox to 0.9\hsize{\hsize=0.9\hsize\vtop{{\bf##1}\newline##2}}}
+\advance\c@lesson by 1}
+\long\def\objectives##1{
+\vskip2mm
+\hrule
+\vskip2mm
+##1
+\vskip2mm
+\hrule
+\vskip2mm
+}
+\newpage
+\def\@subtopic{Reihenplanung}
+\c@points=0
+\c@exercise=0
+\pagestyle{Worksheet}
+\makeSheetTitle{Reihenplanung}{#1}{ }{#2}
+#3
+\newpage
+}
+
+\long\def\newWorksheet#1#2{
+\newpage
+\def\@subtopic{#1}
+\c@points=0
+\c@exercise=0
+\pagestyle{Worksheet}
+\advance\c@sheet by 1
+\makeSheetTitle{\@worksheetName\space\the\c@sheet}{#1}{}{\@nameName:\kern50mm}
+#2
+\newpage
+}
+
+\long\def\newTest#1#2{
+\newpage
+\def\@subtopic{\@testName}
+\c@points=0
+\c@exercise=0
+\pagestyle{Worksheet}
+\begingroup
+\@pointstrue
+
+\global\c@points=0
+\c@exercise=0
+\makeSheetTitle{\@testName}{#1}{}{\@nameName:\kern50mm}
+#2
+\vskip1cm
+{\hfill\bf \@wishName \kern3cm(\the\c@points\space\@pointsName)}
+\newpage
+
+\@solvelooptrue
+\global\c@points=0
+\c@exercise=0
+\makeSheetTitle{\@testName}{#1}{}{\@solutionName}
+#2
+\vskip1cm
+\hfill{\bf\@totalName:\kern2cm / \the\c@points\space\@pointsName}
+\newpage
+\@solveloopfalse
+\endgroup
+}
+
+\long\def\newExam#1#2{
+\newpage
+\def\@subtopic{\@examName}
+\pagestyle{Worksheet}
+\begingroup
+\@pointstrue
+
+\global\c@points=0
+\c@exercise=0
+\makeSheetTitle{\@examName}{#1}{}{\@nameName:\kern50mm}
+#2
+\vskip1cm
+{\hfill\bf \@wishName \kern3cm(\the\c@points\space\@pointsName)}
+\newpage
+
+\@solvelooptrue
+\global\c@points=0
+\c@exercise=0
+\makeSheetTitle{\@examName}{#1}{}{\@solutionName}
+#2
+\vskip1cm
+\hfill{\bf\@totalName:\kern2cm / \the\c@points\space\@pointsName}
+\getGradeList
+\newpage
+\@solveloopfalse
+
+\endgroup
+}
+
+
+

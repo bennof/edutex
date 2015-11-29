@@ -1,0 +1,79 @@
+
+\catcode`@=11
+\def\@icon{\kern-1cm\includeImage[3cm]{sgslogo.png}}
+\def\@url{Gesamtschule Stolberg}
+\def\@subject{Mathematik}
+\def\@date{12. August 2013}
+
+\def\@worksheetName{Arbeitsblatt}
+\def\@exerciseName{Aufgabe}
+\def\@examName{Arbeit}
+\def\@testName{Test}
+\def\@pointsName{Punkte}
+\def\@gradeName{Note}
+\def\@totalName{Gesamt}
+\def\@solutionName{Lösung}
+\def\@countName{Anzahl}
+\def\@wishName{Viel Glück! }
+\def\@nameName{Name}
+
+\setGrade{1+}{0.95}
+\setGrade{1}{0.90}
+\setGrade{1-}{0.85}
+\setGrade{2+}{0.80}
+\setGrade{2}{0.75}
+\setGrade{2-}{0.70}
+\setGrade{3+}{0.65}
+\setGrade{3}{0.60}
+\setGrade{3-}{0.55}
+\setGrade{4+}{0.50}
+\setGrade{4}{0.45}
+\setGrade{4-}{0.40}
+\setGrade{5}{0.20}
+\setGrade{6}{0.00}
+
+\catcode`@=12
+
+\newSeries{Learning \eduTeX}{1}
+\newWorksheet{Learning educational \TeX\space for schools}{
+\exercise{Dies ist ein Test}
+{Was ist ein Baum}
+\exercise{Dies ist ein Test}{
+\subexercise*{Was ist ein Baum im Niergendwo?}{Solve}}
+\exercise{Dies ist ein Test}{
+\subexercise{Was ist ein Baum im Niergendwo?}{Solve}}
+\exercise{Dies ist ein Test}{
+\subexercise{Was ist ein Baum im Niergendwo? With more and more and more  and more and more and more and more text.}{Solve}
+\subexercise{Was ist ein Baum im Niergendwo?}{Solve}}
+\exercise{Dies ist ein Test}{
+\subexercise[0.45\hsize]{Was ist ein Baum im Niergendwo?}{Solve}
+\subexercise[0.45\hsize]{Was ist ein Baum im Niergendwo?}{Solve}
+}
+$$\lim\limits_{x\to\infty} \int_0^n{{x}\over{t-1}} dt$$
+\rm dies ist ein test
+\bf soso\newline
+\rm
+\includeImage[200pt]{sgslogo.png}
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+}
+
+
+\newExam{Test \TeX\space for schools}{
+\exercise{Dies ist ein Test}{
+\subexercise*{Was ist ein Baum im Niergendwo?}{Solve\ap}}
+\exercise{Dies ist ein Test}{
+\subexercise{Was ist ein Baum im Niergendwo?}{Solve\ap}}
+\exercise{Dies ist ein Test}{
+\subexercise{Was ist ein Baum im Niergendwo? With more and more and more  and more and more and more and more text.}{Solve}
+\subexercise{Was ist ein Baum im Niergendwo?}{Solve\ap\ap}}
+
+\exercise{Dies ist ein Test}{
+\subexercise[0.45\hsize]{Was ist ein Baum im Niergendwo?}{Solve}
+\subexercise[0.45\hsize]{Was ist ein Baum im Niergendwo?}{Solve}
+}
+}
+
+
+
+\bye

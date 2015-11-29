@@ -1,0 +1,83 @@
+#!/bin/sh
+
+VERSION=0.14a
+YEAR=2015
+AUTHOR="Benno Falkner <benno@benjaminfalkner.de>"
+
+
+echo "eduTeX - Shell Edition - $VERSION"
+echo "(c) $YEAR $AUTHOR"
+echo ""
+
+DIR=$(pwd)
+
+SOURCE=$0
+while [ -h "$SOURCE" ]; do
+	DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+	SOURCE="$(readlink "$SOURCE")"
+	[[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+DIR="$(cd $DIR/.. && pwd)"
+echo "eduTeX directory: $DIR"
+
+set -xe
+
+
+
+tex () {
+	export TEXINPUTS=.:$DIR/tex/:$TEXINPUTS
+	export TFMFONTS=.:$DIR/tex/fonts/:$TFMFONTS
+	export TEXFORMATS=.:$DIR/tex/fmt/:$TEXFORMATS
+
+	pdftex -fmt=edutex -output-format pdf -progname edutex  -recorder -shell-escape -file-line-error $1.tex
+}
+
+init () {
+	export TEXINPUTS=.:$DIR/tex/:$TEXINPUTS
+	export TFMFONTS=.:$DIR/tex/fonts/:$TFMFONTS
+
+	mkdir -p $DIR/tex/fmt
+	cd $DIR/tex/fmt
+	pdftex -ini -recorder -shell-escape -file-line-error $DIR/tex/edutex.fmt.tex
+	mv $DIR/tex/fmt/edutex.fmt.fmt $DIR/tex/fmt/edutex.fmt
+}
+
+inst () {
+	echo "!! MISSING !!"
+}
+
+buildexamples () {
+	cd $DIR/examples
+	tex helloworld
+	tex utf
+}
+
+help () {
+	cat <<END
+Help:
+
+usage: edutex <mode> [args] <file>
+
+Modes:
+  help            print this help
+  tex     <file>  run tex with edutex format file
+  init    <path>  create edutex format file at path 
+  install <path>  install edutes at path
+  examples        build examples in $DIR/examples
+  setup           !!Missing!! setup  config files
+
+END
+}
+
+
+MODE=$1
+shift
+case "$MODE" in
+	help) help;;
+	tex) tex $@;;
+	examples) buildexamples $@;;
+	init) init $@;;
+	install) inst $@;;
+	*) tex $@;;
+esac

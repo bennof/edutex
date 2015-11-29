@@ -1,0 +1,64 @@
+%    EduTeX is a replacment and/or TeX lib for education
+%    Copyright (C) 2010-2015  Benjamin Falkner
+%
+%    This program is free software: you can redistribute it and/or modify
+%    it under the terms of the GNU General Public License as published by
+%    the Free Software Foundation, either version 3 of the License, or
+%    (at your option) any later version.
+%
+%    This program is distributed in the hope that it will be useful,
+%    but WITHOUT ANY WARRANTY; without even the implied warranty of
+%    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+%    GNU General Public License for more details.
+%
+%    You should have received a copy of the GNU General Public License
+%    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
+\def\@font#1#2{
+\global\expandafter\font\csname #1\endcsname
+= #2}
+
+
+\def\edutex@newfont#1#2#3#4{%1name%2fontname%3family%4short
+\expandafter\@font{ten#1}{#2 at10pt} 
+\expandafter\@font{nine#1}{#2 at9pt}
+\expandafter\@font{seven#1}{#2 at7pt} 
+\expandafter\@font{five#1}{#2 at5pt} 
+\expandafter\@font{twelv#1}{#2 at12pt}
+\expandafter\@font{twenty#1}{#2 at20pt} 
+
+\global\textfont#3=\csname ten#1\endcsname
+\global\scriptfont#3=\csname seven#1\endcsname
+\global\scriptscriptfont#3=\csname five#1\endcsname
+\expandafter\gdef\csname #4\endcsname{\fam=#3 \csname ten#1\endcsname}
+\expandafter\gdef\csname #4small\endcsname{\fam=#3 \csname nine#1\endcsname}
+\expandafter\gdef\csname #4large\endcsname{\fam=#3 \csname twelv#1\endcsname}
+\expandafter\gdef\csname #4big\endcsname{\fam=#3 \csname twenty#1\endcsname}
+}
+
+\let\newfont\edutex@newfont
+
+
+% Family 0 (Roman/Sans)
+\newfont{rm}{phvr8r}{0}{rm}
+% Family 1 (Math italic)
+\newfont{i}{cmmi10}{1}{mit}
+% Family 2 (Math symbols)
+\newfont{sy}{cmsy10}{2}{cal}
+% Family 3 (Math extension)
+\newfont{ex}{cmex10}{3}{ex}
+% Family 4 (Italic text)
+\newfont{it}{phvro8r}{4}{it}
+% Family 5 (Slanted text)
+\newfont{sl}{phvro8r}{5}{sl}
+% Family 6 (Bold text)
+\newfont{bf}{phvb8r}{6}{bf}
+% Family 7 (Typewriter)
+\newfont{tt}{phvr8r}{7}{tt}
+% Family 8 (Roman/Sans Small Caps)
+\newfont{sc}{phvr8r}{8}{sc}
+% Family 9 (Bold text Small Caps)
+\newfont{bfsc}{phvb8r}{8}{bfsc}
+\rm % Sets normal roman font
+\endinput
