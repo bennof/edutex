@@ -1,4 +1,7 @@
 # edutex
+
+## deprecated in fovor of edo.tex (see https://github.com/bennof/edo.tex)
+
 EduTeX is a document preparation system and document markup language using the TeX typesetting system for output. The system is focusing small disk space and pdf output for education.
 
 EduTeX will be designed to perform stuff typically used for education. A major focus are worksheets, tests and classroom management. The advantage of TeX compared to MS Word and other office suites is the more accurate typsetting, mathematical formula setting and the programming language. 
